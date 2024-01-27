@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackDefaul : MonoBehaviour
@@ -23,7 +21,7 @@ public class AttackDefaul : MonoBehaviour
             
         }
 
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("kuoka_hardattack") &&
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("kuoka_fistattack") &&
             _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             isAttacking = false;
