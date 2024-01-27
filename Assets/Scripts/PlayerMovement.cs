@@ -27,13 +27,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody2D; 
     private float _direction; 
     private bool _jump;
+    [SerializeField] private Animator _animator;
         void Update()
         {
+            bool isGrounded = Physics2D.OverlapCircle(_groundChecker.position, _groundCheckerRadius, _groundLayer);
             _direction = Input.GetAxisRaw("Horizontal");
-            if(Input.GetButtonDown("Jump"))
+            if(Input.GetButtonDown("Jump") && isGrounded)
             {
-                _jump = true;
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x,_jumpForce);
             }
+
+            if (_direction > 0f)
+                _animator.SetBool("isRunning", true);
+            else if(_direction < 0f)
+                _animator.SetBool("isRunning", true);
+            else
+                _animator.SetBool("isRunning", false);
         }
 
         private void OnDrawGizmos()
@@ -45,12 +54,11 @@ public class PlayerMovement : MonoBehaviour
         {
             bool isGrounded = Physics2D.OverlapCircle(_groundChecker.position, _groundCheckerRadius, _groundLayer);
             bool canStand = Physics2D.OverlapBox(_cellChecker.position, _boxCollider2D.size, _groundLayer);
+            /*if (_jump && isGrounded)
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x,_jumpForce);
+            _jump = false;*/
             
-            if (_jump && isGrounded)
-                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
-            _jump = false;
-            
-            if (Input.GetAxis("Crouch") > 0 || !canStand)
+            if (Input.GetButtonDown("Crouch") || !canStand)
                 _boxCollider2D.enabled = false;
             else
                 _boxCollider2D.enabled = true;
