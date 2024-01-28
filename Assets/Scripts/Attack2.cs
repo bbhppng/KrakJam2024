@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class Attack2 : MonoBehaviour
 {
     [SerializeField] private Transform _attackChecker;
     [SerializeField] private float _attackCheckerRange;
@@ -15,7 +17,7 @@ public class Attack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButtonDown("HardAttack") && !isHardAttacking && Time.time > _nextAttackTime)
+        if (Input.GetButtonDown("HardAttack2") && !isHardAttacking && Time.time > _nextAttackTime)
         {
             _cooldownTime = 10f;
             HardAttack();
@@ -26,7 +28,7 @@ public class Attack : MonoBehaviour
         HardAttackAnimation();
       
 
-        if (Input.GetButtonDown("FistAttack") && !isFistAttacking && Time.time > _nextFistAttackTime)
+        if (Input.GetButtonDown("FistAttack2") && !isFistAttacking && Time.time > _nextFistAttackTime)
         {
             _FistcooldownTime = 2f;
             FistAttack();

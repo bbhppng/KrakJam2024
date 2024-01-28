@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class PlayerMovement : MonoBehaviour
+public class Player2Movement : MonoBehaviour
 {
     [Header("Horizontal")]
     [SerializeField] private float _speed = 5f;
     [SerializeField] private bool _facingRight = true;
-    [FormerlySerializedAs("jumpForce")]
-    
     [Header("Vertical")]
     
     [SerializeField] private float _jumpForce = 15f;
@@ -33,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
         void Update()
         {
             bool isGrounded = Physics2D.OverlapCapsule(_groundChecker.position, new Vector2(0.7371427f, 0.1142798f), CapsuleDirection2D.Horizontal, 0, _groundLayer);
-            _direction = Input.GetAxisRaw("Horizontal");
-            if(Input.GetButtonDown("Jump") && isGrounded)
+            _direction = Input.GetAxisRaw("Horizontal2");
+            if(Input.GetButtonDown("Jump2") && isGrounded)
             {
                 _rigidbody2D.velocity = new Vector2(_direction * 2f,_jumpForce);
                 isJumping = true;
@@ -42,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             }
             CalculateGravity(); 
 
-            if (Input.GetButtonUp("Jump"))
+            if (Input.GetButtonUp("Jump2"))
             {
                 EndJump();
             }
