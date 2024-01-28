@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private float _groundCheckerRadius; 
     [SerializeField] private LayerMask _groundLayer;
-    [FormerlySerializedAs("boxCollider2D")] 
     [Header("Crouch")] 
     [SerializeField] private BoxCollider2D _boxCollider2D; 
     [SerializeField] private Transform _cellChecker; 
